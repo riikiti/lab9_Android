@@ -32,10 +32,19 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical">
+
                     <TextView
+                        android:id="@+id/currentItem"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="16dp"
+                        android:layout_marginBottom="10dp"
+                        android:visibility="gone"/>
+
+                    <ListView
+                        android:id="@+id/softwareList"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:text="Catalog Tab"/>
+                        android:layout_height="match_parent" />
 
                 </LinearLayout>
 
@@ -44,10 +53,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical">
+
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:text="Edit Tab"/>
+                        android:text="Edit Tab" />
 
                 </LinearLayout>
             </FrameLayout>
