@@ -1,4 +1,4 @@
-package com.example.lab9;
+package com.example.lab9.Adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -7,16 +7,19 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import com.example.lab9.Objects.Subcategory;
+import com.example.lab9.R;
+
 import java.util.List;
 
-public class SoftwareAdapter extends ArrayAdapter<Software> {
+public class SubcategoryAdapter extends ArrayAdapter<Subcategory> {
     private LayoutInflater inflater;
     private int layout;
-    private List<Software> softwareList;
+    private List<Subcategory> subcategoryList;
 
-    public SoftwareAdapter(Context context, int resource, List<Software> softwareList) {
-        super(context, resource, softwareList);
-        this.softwareList = softwareList;
+    public SubcategoryAdapter(Context context, int resource, List<Subcategory> subcategoryList) {
+        super(context, resource, subcategoryList);
+        this.subcategoryList = subcategoryList;
         this.layout = resource;
         this.inflater = LayoutInflater.from(context);
     }
@@ -27,10 +30,10 @@ public class SoftwareAdapter extends ArrayAdapter<Software> {
         TextView nameView = view.findViewById(R.id.itemName);
         TextView descriptionView = view.findViewById(R.id.itemDescription);
 
-        Software software = softwareList.get(position);
+        Subcategory subcategory = subcategoryList.get(position);
 
-        nameView.setText(software.getName());
-        descriptionView.setText(software.getCategory() + ", " + software.getSubcategory());
+        nameView.setText(subcategory.getName());
+        descriptionView.setText("ID: " + subcategory.getId() + ", Категория: " + subcategory.getCategory());
 
         return view;
     }

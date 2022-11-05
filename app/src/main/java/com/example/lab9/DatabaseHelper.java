@@ -5,14 +5,17 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import java.text.Format;
+import com.example.lab9.Objects.Category;
+import com.example.lab9.Objects.Software;
+import com.example.lab9.Objects.Subcategory;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "Softwares.db";
     private static final int SCHEMA = 1; // DB Version
-    static final String TABLE = "Software"; //
+    static final String TABLE = "Software";
 
     public static final String COLUMN_ID = "_id";
     public static final String COLUMN_NAME = "name";
@@ -92,7 +95,42 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             } while (cursor.moveToNext());
         }
 
+        db.close();
         cursor.close();
         return softwareList;
+    }
+
+    public List<Category> getCategoryList() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String queryString = "SELECT _id, name FROM Category;";
+        Cursor cursor = db.rawQuery(queryString, null);
+        List<Category> categoryList = new ArrayList<>();
+
+        if (cursor.moveToFirst()) {
+            do {
+                categoryList.add(new Category(cursor.getInt(0), cursor.getString(1)));
+            } while (cursor.moveToNext());
+        }
+
+        db.close();
+        cursor.close();
+        return categoryList;
+    }
+
+    public List<Subcategory> getSubcategoryList() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String queryString = "SELECT Subcategory._id, Subcategory.name, Category.name FROM Subcategory, Category WHERE Subcategory.categoryID = Category._id;";
+        Cursor cursor = db.rawQuery(queryString, null);
+        List<Subcategory> subcategoryList = new ArrayList<>();
+
+        if (cursor.moveToFirst()) {
+            do {
+                subcategoryList.add(new Subcategory(cursor.getInt(0), cursor.getString(1), cursor.getString(2)));
+            } while (cursor.moveToNext());
+        }
+
+        db.close();
+        cursor.close();
+        return subcategoryList;
     }
 }

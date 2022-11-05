@@ -7,10 +7,19 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.TabHost;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.lab9.Adapters.CategoryAdapter;
+import com.example.lab9.Adapters.SoftwareAdapter;
+import com.example.lab9.Adapters.SubcategoryAdapter;
+import com.example.lab9.Objects.Category;
+import com.example.lab9.Objects.Software;
+import com.example.lab9.Objects.Subcategory;
 
 import java.util.List;
 
@@ -18,9 +27,12 @@ public class MainActivity extends AppCompatActivity {
 
     DatabaseHelper databaseHelper;
     SQLiteDatabase db;
-    Cursor softwareCursor;
+    Cursor cursor;
     ListView softwareListView;
+    ListView editListView;
     SoftwareAdapter softwareAdapter;
+    CategoryAdapter categoryAdapter;
+    SubcategoryAdapter subcategoryAdapter;
     int currentItemId = -1;
 
     @Override
@@ -30,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
 
         initTabs();
         softwareListView = findViewById(R.id.softwareList);
+        editListView = findViewById(R.id.editList);
         databaseHelper = new DatabaseHelper(getApplicationContext());
     }
 
@@ -39,39 +52,37 @@ public class MainActivity extends AppCompatActivity {
         boolean mydb = getBaseContext().deleteDatabase("Softwares.db");
         db = databaseHelper.getReadableDatabase();
 
-        softwareCursor =  db.rawQuery("select * from "+ DatabaseHelper.TABLE, null);
         List<Software> softwareList = databaseHelper.getSoftwareList();
-        softwareAdapter = new SoftwareAdapter(this, R.layout.list_software_item, softwareList);
+        softwareAdapter = new SoftwareAdapter(this, R.layout.list_item, softwareList);
         softwareListView.setAdapter(softwareAdapter);
-        softwareListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Software selected = (Software) parent.getItemAtPosition(position);
-                TextView currentItem = findViewById(R.id.currentItem);
-                if (currentItemId == selected.getId() && currentItem.getVisibility() == View.VISIBLE) {
-                    currentItem.setVisibility(View.GONE);
-                }
-                else {
-                    if (currentItem.getVisibility() == View.GONE) currentItem.setVisibility(View.VISIBLE);
-                    String str = "Выбранный объект:\nНазвание: " + selected.getName()
-                            + "\nОписание: " + selected.getDescription()
-                            + "\nСтоимость: " + selected.getCost()
-                            + "\nВерсия: " + selected.getVersion()
-                            + "\nДата разработки: " + selected.getDevelopmentDate()
-                            + "\nКатегория: " + selected.getCategory()
-                            + "\nПодкатегория: " + selected.getSubcategory();
-                    currentItem.setText(str);
-                    currentItemId = selected.getId();
-                }
+        softwareListView.setOnItemClickListener((parent, view, position, id) -> {
+            Software selected = (Software) parent.getItemAtPosition(position);
+            TextView currentItem = findViewById(R.id.currentItem);
+            if (currentItemId == selected.getId() && currentItem.getVisibility() == View.VISIBLE) {
+                currentItem.setVisibility(View.GONE);
+            } else {
+                if (currentItem.getVisibility() == View.GONE)
+                    currentItem.setVisibility(View.VISIBLE);
+                String str = "Выбранный объект:"
+                        + "\nID: " + selected.getId()
+                        + "\nНазвание: " + selected.getName()
+                        + "\nОписание: " + selected.getDescription()
+                        + "\nСтоимость: " + selected.getCost()
+                        + "\nВерсия: " + selected.getVersion()
+                        + "\nДата разработки: " + selected.getDevelopmentDate()
+                        + "\nКатегория: " + selected.getCategory()
+                        + "\nПодкатегория: " + selected.getSubcategory();
+                currentItem.setText(str);
+                currentItemId = selected.getId();
             }
         });
     }
 
     @Override
-    public void onDestroy(){
+    public void onDestroy() {
         super.onDestroy();
         db.close();
-        softwareCursor.close();
+        cursor.close();
     }
 
     private void initTabs() {
@@ -91,11 +102,37 @@ public class MainActivity extends AppCompatActivity {
         tabSpec.setContent(R.id.tabEdit);
         tabHost.addTab(tabSpec);
 
-        tabHost.setCurrentTabByTag("Catalog Tab");
-        tabHost.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
-            public void onTabChanged(String tabId) {
-                Toast.makeText(getBaseContext(), "tabId = " + tabId, Toast.LENGTH_SHORT).show();
+        Spinner dropdown = findViewById(R.id.itemSpinner);
+        String[] spinnerItems = new String[]{"Объекты", "Категории", "Подкатегории"};
+        ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, spinnerItems);
+        dropdown.setAdapter(spinnerAdapter);
+        dropdown.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                switch (position) {
+                    case 0:
+                        List<Software> softwareList = databaseHelper.getSoftwareList();
+                        softwareAdapter = new SoftwareAdapter(MainActivity.this, R.layout.list_item, softwareList);
+                        editListView.setAdapter(softwareAdapter);
+                        break;
+                    case 1:
+                        List<Category> categoryList = databaseHelper.getCategoryList();
+                        categoryAdapter = new CategoryAdapter(MainActivity.this, R.layout.list_item, categoryList);
+                        editListView.setAdapter(categoryAdapter);
+                        break;
+                    case 2:
+                        List<Subcategory> subcategoryList = databaseHelper.getSubcategoryList();
+                        subcategoryAdapter = new SubcategoryAdapter(MainActivity.this, R.layout.list_item, subcategoryList);
+                        editListView.setAdapter(subcategoryAdapter);
+                        break;
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
             }
         });
+
+        tabHost.setCurrentTabByTag("Catalog Tab");
     }
 }

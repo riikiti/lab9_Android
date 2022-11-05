@@ -1,4 +1,4 @@
-package com.example.lab9;
+package com.example.lab9.Objects;
 
 // Class for Software Object
 public class Software {
