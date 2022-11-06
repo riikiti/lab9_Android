@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    tools:context=".Activity.MainActivity">
 
     <TabHost
         android:id="@android:id/tabhost"
@@ -63,8 +63,8 @@
                             android:id="@+id/spinnerLabel"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="16dp"
-                            android:text="Выберите таблицу: "/>
+                            android:text="Выберите таблицу: "
+                            android:textSize="16dp" />
 
                         <Spinner
                             android:id="@+id/itemSpinner"
@@ -73,6 +73,14 @@
                             android:background="@android:drawable/btn_dropdown"
                             android:spinnerMode="dropdown" />
                     </LinearLayout>
+
+                    <Button
+                        android:id="@+id/addObjectButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:onClick="addObject"
+                        android:text="Добавить запись"
+                        android:textSize="@dimen/text_size" />
 
                     <ListView
                         android:id="@+id/editList"

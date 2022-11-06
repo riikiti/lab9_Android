@@ -1,7 +1,9 @@
 package com.example.lab9.Objects;
 
+import java.io.Serializable;
+
 // Class for Software Subcategory
-public class Subcategory {
+public class Subcategory implements Serializable {
     private int id;
     private String name;
     private String category = "";

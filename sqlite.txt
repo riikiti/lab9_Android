@@ -1,0 +1,39 @@
+CREATE TABLE IF NOT EXISTS Category (
+  id INTEGER PRIMARY KEY UNIQUE,
+  name TEXT NOT NULL UNIQUE);
+
+INSERT INTO Category (name)
+VALUES ('Application Software'), ('System Software');
+
+CREATE TABLE IF NOT EXISTS Subcategory (
+  id INTEGER PRIMARY KEY UNIQUE,
+  name TEXT NOT NULL UNIQUE,
+  categoryID INTEGER NOT NULL, 
+  FOREIGN KEY (categoryID) 
+  	REFERENCES Category (id)
+  	ON UPDATE CASCADE
+  	ON DELETE CASCADE
+);
+
+INSERT INTO Subcategory (name, categoryID)
+VALUES ('Editor', 1), ('Browser', 1), ('Archiver', 1);
+
+CREATE TABLE IF NOT EXISTS Software (
+  id INTEGER PRIMARY KEY UNIQUE, 
+  name TEXT NOT NULL,
+  description TEXT,
+  cost INTEGER,
+  version INTEGER,
+  developmentDate TEXT,
+  subcategoryID INTEGER NOT NULL,
+    FOREIGN KEY (subcategoryID) 
+  	REFERENCES Subcategory (id)
+  	ON UPDATE CASCADE
+  	ON DELETE CASCADE);  
+    
+INSERT INTO Software (name, description, cost, version, developmentDate, subcategoryID)
+VALUES ('name', 'desc', 100, 1, '01-01-2001', 1);
+
+SELECT * FROM Software;
+SELECT Software.name, Software.description, Software.cost, Software.version, Software.developmentDate, Category.name as category, Subcategory.name as subcategory FROM Software, Category, Subcategory
+WHERE Software.subcategoryID = Subcategory.id AND Subcategory.categoryID = Category.id;

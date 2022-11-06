@@ -13,9 +13,9 @@ import com.example.lab9.R;
 import java.util.List;
 
 public class SubcategoryAdapter extends ArrayAdapter<Subcategory> {
-    private LayoutInflater inflater;
-    private int layout;
-    private List<Subcategory> subcategoryList;
+    private final LayoutInflater inflater;
+    private final int layout;
+    private final List<Subcategory> subcategoryList;
 
     public SubcategoryAdapter(Context context, int resource, List<Subcategory> subcategoryList) {
         super(context, resource, subcategoryList);

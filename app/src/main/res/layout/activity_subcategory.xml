@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activity.SubcategoryActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/subcategoryLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:text="Добавление/редактирование подкатегории"
+                android:textSize="@dimen/text_size"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:labelFor="@+id/edit_subcategory_name"
+                android:text="Название" />
+
+            <EditText
+                android:id="@+id/edit_subcategory_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Название" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:labelFor="@+id/edit_subcategory_category"
+                android:text="Категория" />
+
+            <EditText
+                android:id="@+id/edit_subcategory_category"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Категория" />
+
+            <Button
+                android:id="@+id/editSubcategory"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="addOrEdit"
+                android:text="Редактировать/добавить"
+                android:textSize="@dimen/text_size" />
+
+            <Button
+                android:id="@+id/deleteSubcategory"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="deleteSubcategory"
+                android:text="Удалить"
+                android:textSize="@dimen/text_size" />
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

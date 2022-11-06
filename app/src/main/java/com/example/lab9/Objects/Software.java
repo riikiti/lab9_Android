@@ -1,7 +1,9 @@
 package com.example.lab9.Objects;
 
+import java.io.Serializable;
+
 // Class for Software Object
-public class Software {
+public class Software implements Serializable {
     private int id;
     private String name;
     private String description;

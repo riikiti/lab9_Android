@@ -13,9 +13,9 @@ import com.example.lab9.R;
 import java.util.List;
 
 public class SoftwareAdapter extends ArrayAdapter<Software> {
-    private LayoutInflater inflater;
-    private int layout;
-    private List<Software> softwareList;
+    private final LayoutInflater inflater;
+    private final int layout;
+    private final List<Software> softwareList;
 
     public SoftwareAdapter(Context context, int resource, List<Software> softwareList) {
         super(context, resource, softwareList);
