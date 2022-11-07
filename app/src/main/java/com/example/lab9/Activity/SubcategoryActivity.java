@@ -40,7 +40,7 @@ public class SubcategoryActivity extends AppCompatActivity {
                 Button deleteBtn = findViewById(R.id.deleteSubcategory);
                 deleteBtn.setVisibility(View.GONE);
             } else {
-                label.setText("Редактирование категории");
+                label.setText("Редактирование подкатегории");
                 editBtn.setText("Редактировать");
 
                 subcategory = (Subcategory) arguments.getSerializable(Subcategory.class.getSimpleName());
@@ -53,6 +53,16 @@ public class SubcategoryActivity extends AppCompatActivity {
     public void addOrEdit(View view) {
         String name = editName.getText().toString();
         String category = editCategory.getText().toString();
+
+        if (name.trim().length() < 1) {
+            Toast.makeText(this, "Введите название подкатегории!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (category.trim().length() < 1) {
+            Toast.makeText(this, "Введите категорию!", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
         SQLiteDatabase db = getBaseContext().openOrCreateDatabase("Softwares.db", MODE_PRIVATE, null);
         String query = "SELECT _id FROM Category WHERE name = '" + category + "';";

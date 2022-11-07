@@ -68,6 +68,16 @@ public class SoftwareActivity extends AppCompatActivity {
         String date = editDate.getText().toString();
         String subcategory = editSubcategory.getText().toString();
 
+        if (name.trim().length() < 1) {
+            Toast.makeText(this, "Введите название ПО!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (subcategory.trim().length() < 1) {
+            Toast.makeText(this, "Введите название подкатегории!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         SQLiteDatabase db = getBaseContext().openOrCreateDatabase("Softwares.db", MODE_PRIVATE, null);
         String query = "SELECT _id FROM Subcategory WHERE name = '" + subcategory + "';";
         Cursor cursor = db.rawQuery(query, null);

@@ -52,6 +52,11 @@ public class CategoryActivity extends AppCompatActivity {
     public void addOrEdit(View view) {
         String name = editName.getText().toString();
 
+        if (name.trim().length() < 1) {
+            Toast.makeText(this, "Введите название категории!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         SQLiteDatabase db = getBaseContext().openOrCreateDatabase("Softwares.db", MODE_PRIVATE, null);
         String query;
         if (isNewObject) {
