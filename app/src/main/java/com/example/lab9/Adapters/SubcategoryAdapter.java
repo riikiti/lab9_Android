@@ -33,7 +33,7 @@ public class SubcategoryAdapter extends ArrayAdapter<Subcategory> {
         Subcategory subcategory = subcategoryList.get(position);
 
         nameView.setText(subcategory.getName());
-        descriptionView.setText("ID: " + subcategory.getId() + ", Категория: " + subcategory.getCategory());
+        descriptionView.setText(String.format("ID: %s, Категория: %s", subcategory.getId(), subcategory.getCategory()));
 
         return view;
     }

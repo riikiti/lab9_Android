@@ -33,7 +33,7 @@ public class SoftwareAdapter extends ArrayAdapter<Software> {
         Software software = softwareList.get(position);
 
         nameView.setText(software.getName());
-        descriptionView.setText(software.getCategory() + ", " + software.getSubcategory());
+        descriptionView.setText(String.format("%s, %s", software.getCategory(), software.getSubcategory()));
 
         return view;
     }

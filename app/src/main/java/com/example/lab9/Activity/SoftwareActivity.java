@@ -52,8 +52,8 @@ public class SoftwareActivity extends AppCompatActivity {
                 software = (Software) arguments.getSerializable(Software.class.getSimpleName());
                 editName.setText(software.getName());
                 editDescription.setText(software.getDescription());
-                editCost.setText(Integer.toString(software.getCost()));
-                editVersion.setText(Integer.toString(software.getVersion()));
+                editCost.setText(String.format("%s", software.getCost()));
+                editVersion.setText(String.format("%s", software.getVersion()));
                 editDate.setText(software.getDevelopmentDate());
                 editSubcategory.setText(software.getSubcategory());
             }
@@ -63,8 +63,8 @@ public class SoftwareActivity extends AppCompatActivity {
     public void addOrEdit(View view) {
         String name = editName.getText().toString();
         String description = editDescription.getText().toString();
-        int cost = Integer.valueOf(editCost.getText().toString());
-        int version = Integer.valueOf(editVersion.getText().toString());
+        int cost = Integer.parseInt(editCost.getText().toString());
+        int version = Integer.parseInt(editVersion.getText().toString());
         String date = editDate.getText().toString();
         String subcategory = editSubcategory.getText().toString();
 

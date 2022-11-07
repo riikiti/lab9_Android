@@ -113,7 +113,7 @@
                 android:id="@+id/deleteSoftware"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:onClick="deleteCategory"
+                android:onClick="deleteSoftware"
                 android:text="Удалить"
                 android:textSize="@dimen/text_size" />
         </LinearLayout>

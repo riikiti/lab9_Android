@@ -33,7 +33,7 @@ public class CategoryAdapter extends ArrayAdapter<Category> {
         Category category = categoryList.get(position);
 
         nameView.setText(category.getName());
-        descriptionView.setText("ID: " + category.getId());
+        descriptionView.setText(String.format("ID: %s", category.getId()));
 
         return view;
     }
