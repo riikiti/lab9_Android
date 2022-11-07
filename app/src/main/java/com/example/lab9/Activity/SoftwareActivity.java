@@ -61,10 +61,19 @@ public class SoftwareActivity extends AppCompatActivity {
     }
 
     public void addOrEdit(View view) {
+
         String name = editName.getText().toString();
         String description = editDescription.getText().toString();
-        int cost = Integer.parseInt(editCost.getText().toString());
-        int version = Integer.parseInt(editVersion.getText().toString());
+        int cost, version;
+        try {
+            cost = Integer.parseInt(editCost.getText().toString());
+            version = Integer.parseInt(editVersion.getText().toString());
+        }
+        catch (Exception e) {
+            Toast.makeText(this, "Проверьте правильность ввода данных!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         String date = editDate.getText().toString();
         String subcategory = editSubcategory.getText().toString();
 
