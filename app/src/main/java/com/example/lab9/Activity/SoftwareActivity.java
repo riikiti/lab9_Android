@@ -52,14 +52,14 @@ public class SoftwareActivity extends AppCompatActivity {
 
             isNewObject = arguments.getBoolean("isNewObject");
             if (isNewObject) {
-                label.setText("Добавление ПО");
-                editBtn.setText("Добавить");
+                label.setText("Добавление огузка");
+                editBtn.setText("Добавить огузка");
                 Button deleteBtn = findViewById(R.id.deleteSoftware);
                 deleteBtn.setVisibility(View.GONE);
             }
             else {
-                label.setText("Редактирование ПО");
-                editBtn.setText("Редактировать");
+                label.setText("Редактирование информации о огузке");
+                editBtn.setText("Редактировать огузка");
 
                 software = (Software) arguments.getSerializable(Software.class.getSimpleName());
                 editName.setText(software.getName());
@@ -67,7 +67,6 @@ public class SoftwareActivity extends AppCompatActivity {
                 editCost.setText(String.format("%s", software.getDate()));
                 //editVersion.setText(String.format("%s", software.getGroupe()));
                 editDate.setText(software.getDevelopmentDate());
-                editSubcategory.setText(software.getSubcategory());
                 editSecondName.setText(software.getSecondName());
             }
         }
@@ -112,15 +111,6 @@ public class SoftwareActivity extends AppCompatActivity {
         String date = editDate.getText().toString();
         String subcategory = dropdownList.getSelectedItem().toString();
 
-        if (name.trim().length() < 1) {
-            Toast.makeText(this, "Введите название ПО!", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        if (subcategory.trim().length() < 1) {
-            Toast.makeText(this, "Введите название подкатегории!", Toast.LENGTH_SHORT).show();
-            return;
-        }
 
         SQLiteDatabase db = getBaseContext().openOrCreateDatabase("Softwares.db", MODE_PRIVATE, null);
         String query = "SELECT _id FROM Subcategory WHERE name = '" + subcategory + "';";

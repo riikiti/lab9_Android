@@ -17,39 +17,53 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+
             <TextView
                 android:id="@+id/categoryLabel"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
+                android:layout_marginBottom="20dp"
                 android:text="Добавление/редактирование Факультета"
-                android:textSize="@dimen/text_size"
+                android:textAlignment="center"
+                android:textColor="#000000"
+                android:textSize="20sp"
                 android:textStyle="bold" />
+
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:labelFor="@+id/edit_category_name"
-                android:text="Факультет" />
+                android:text="Факультет"
+                android:textAlignment="center"
+                android:textColor="#000000"
+                android:textSize="16sp"/>
 
             <EditText
                 android:id="@+id/edit_category_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Название" />
+                android:hint="Название"
+                android:textAlignment="center" />
+
 
             <Button
                 android:id="@+id/editCategory"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:backgroundTint="#00FF00"
                 android:onClick="addOrEdit"
                 android:text="Редактировать/добавить"
+
                 android:textSize="@dimen/text_size" />
 
             <Button
                 android:id="@+id/deleteCategory"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:backgroundTint="#FF0000"
                 android:onClick="deleteCategory"
                 android:text="Удалить"
                 android:textSize="@dimen/text_size" />

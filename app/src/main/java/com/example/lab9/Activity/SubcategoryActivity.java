@@ -35,13 +35,13 @@ public class SubcategoryActivity extends AppCompatActivity {
 
             isNewObject = arguments.getBoolean("isNewObject");
             if (isNewObject) {
-                label.setText("Добавление подкатегории");
-                editBtn.setText("Добавить");
+                label.setText("Добавление Группы огузков");
+                editBtn.setText("Добавить Группу огузков");
                 Button deleteBtn = findViewById(R.id.deleteSubcategory);
                 deleteBtn.setVisibility(View.GONE);
             } else {
-                label.setText("Редактирование подкатегории");
-                editBtn.setText("Редактировать");
+                label.setText("Редактирование Группы огузков");
+                editBtn.setText("Редактировать Группу огузков");
 
                 subcategory = (Subcategory) arguments.getSerializable(Subcategory.class.getSimpleName());
                 editName.setText(subcategory.getName());

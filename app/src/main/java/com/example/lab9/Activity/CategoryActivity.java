@@ -34,13 +34,13 @@ public class CategoryActivity extends AppCompatActivity {
 
             isNewObject = arguments.getBoolean("isNewObject");
             if (isNewObject) {
-                label.setText("Добавление категории");
-                editBtn.setText("Добавить");
+                label.setText("Добавление Факультета");
+                editBtn.setText("Добавить Факультет");
                 Button deleteBtn = findViewById(R.id.deleteCategory);
                 deleteBtn.setVisibility(View.GONE);
             } else {
-                label.setText("Редактирование категории");
-                editBtn.setText("Редактировать");
+                label.setText("Редактирование Факультета");
+                editBtn.setText("Редактировать Факультет");
 
                 category = (Category) arguments.getSerializable(Category.class.getSimpleName());
                 editName.setText(category.getName());

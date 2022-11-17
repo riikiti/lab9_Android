@@ -19,35 +19,45 @@
 
             <TextView
                 android:id="@+id/softwareLabel"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:text="Добавление/редактирование студентов"
-                android:textSize="@dimen/text_size"
+                android:layout_marginBottom="20dp"
+                android:text="Добавление/редактирование студентов(огузков)"
+                android:textAlignment="center"
+                android:textColor="#000000"
+                android:textSize="20sp"
                 android:textStyle="bold" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:labelFor="@+id/edit_object_name"
-                android:text="Имя" />
+                android:text="Имя"
+                android:textAlignment="center"
+                android:textColor="#000000"
+                android:textSize="16sp" />
 
             <EditText
                 android:id="@+id/edit_object_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textAlignment="center"
                 android:hint="Имя" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:labelFor="@+id/edit_object_description"
-                android:text="Фамилия" />
+                android:text="Фамилия"
+                android:textColor="#000000"
+                android:textAlignment="center"
+                android:textSize="16sp"/>
 
             <EditText
                 android:id="@+id/edit_object_description"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textAlignment="center"
                 android:hint="Фамилия" />
 
             <TextView
@@ -55,65 +65,89 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:labelFor="@+id/edit_object_subcategory"
-                android:text="Отчество" />
+                android:text="Отчество"
+                android:textColor="#000000"
+                android:textAlignment="center"
+                android:textSize="16sp"/>
 
             <EditText
                 android:id="@+id/edit_object_secondName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Отчество" />
+                android:hint="Отчество"
+                android:textAlignment="center" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:labelFor="@+id/edit_object_date"
-                android:text="Дата рождения" />
+                android:text="Дата рождения"
+                android:textColor="#000000"
+                android:textAlignment="center"
+                android:textSize="16sp"/>
 
             <EditText
                 android:id="@+id/edit_object_date"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Дата рождения"
+                android:textAlignment="center"
                 android:inputType="date" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:labelFor="@+id/edit_object_cost"
-                android:text="Курс" />
+                android:text="Курс"
+                android:textColor="#000000"
+                android:textAlignment="center"
+
+                android:textSize="16sp"/>
 
             <EditText
                 android:id="@+id/edit_object_cost"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Курс"
-                android:inputType="numberDecimal" />
+                android:inputType="numberDecimal"
+                android:textAlignment="center"
+                />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:labelFor="@+id/edit_object_subcategory"
-                android:text="Группа" />
+                android:text="Группа"
+                android:textColor="#000000"
+                android:layout_marginBottom="5dp"
+                android:textAlignment="center"
+                android:textSize="16sp"/>
 
             <Spinner
                 android:id="@+id/spinner2"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:paddingLeft="172dp"/>
 
             <Button
                 android:id="@+id/editSoftware"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:backgroundTint="#00FF00"
                 android:onClick="addOrEdit"
                 android:text="Редактировать/добавить"
+
                 android:textSize="@dimen/text_size" />
 
             <Button
                 android:id="@+id/deleteSoftware"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:backgroundTint="#FF0000"
                 android:onClick="deleteSoftware"
-                android:text="Удалить"
+                android:text="Исключить Огузка"
                 android:textSize="@dimen/text_size" />
 
         </LinearLayout>
