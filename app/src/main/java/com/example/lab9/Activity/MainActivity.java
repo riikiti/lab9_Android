@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
         softwareListView = findViewById(R.id.softwareList);
         editListView = findViewById(R.id.editList);
         dropdownList = findViewById(R.id.itemSpinner);
-        String[] spinnerItems = new String[]{"Объекты", "Категории", "Подкатегории"};
+        String[] spinnerItems = new String[]{"Студенты", "Факультеты", "Группы"};
         ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, spinnerItems);
         dropdownList.setAdapter(spinnerAdapter);
         initListeners();

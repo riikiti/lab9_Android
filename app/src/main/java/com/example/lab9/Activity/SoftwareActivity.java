@@ -6,24 +6,34 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.lab9.DatabaseHelper;
 import com.example.lab9.Objects.Software;
+import com.example.lab9.Objects.Subcategory;
 import com.example.lab9.R;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class SoftwareActivity extends AppCompatActivity {
 
     boolean isNewObject;
     EditText editName, editDescription, editCost, editVersion, editDate, editSubcategory, editSecondName;
     Software software;
-
+    Spinner dropdownList;
+    DatabaseHelper databaseHelper;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_software);
+
+        initSpin();
 
         Bundle arguments = getIntent().getExtras();
 
@@ -38,6 +48,7 @@ public class SoftwareActivity extends AppCompatActivity {
             editDate = findViewById(R.id.edit_object_date);
             editSubcategory = findViewById(R.id.edit_object_subcategory);
             editSecondName = findViewById(R.id.edit_object_secondName);
+
 
             isNewObject = arguments.getBoolean("isNewObject");
             if (isNewObject) {
@@ -62,6 +73,26 @@ public class SoftwareActivity extends AppCompatActivity {
         }
     }
 
+
+    public List<?> initSpin() {
+        dropdownList = findViewById(R.id.spinner2);
+        SQLiteDatabase db = getBaseContext().openOrCreateDatabase("Softwares.db", MODE_PRIVATE, null);
+        String query = "SELECT * FROM Subcategory;";
+        Cursor cursor = db.rawQuery(query, null);
+        cursor.moveToFirst();
+        List<String> str = new ArrayList<>();
+
+        do {
+            str.add(cursor.getString(1));
+        } while (cursor.moveToNext());
+
+        ArrayAdapter<?> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, str);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        dropdownList.setAdapter(adapter);
+
+        return str;
+    }
+
     public void addOrEdit(View view) {
 
         String name = editName.getText().toString();
@@ -79,7 +110,7 @@ public class SoftwareActivity extends AppCompatActivity {
         }
 
         String date = editDate.getText().toString();
-        String subcategory = editSubcategory.getText().toString();
+        String subcategory = dropdownList.getSelectedItem().toString();
 
         if (name.trim().length() < 1) {
             Toast.makeText(this, "Введите название ПО!", Toast.LENGTH_SHORT).show();
