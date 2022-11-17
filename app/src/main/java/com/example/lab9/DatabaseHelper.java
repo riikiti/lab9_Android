@@ -21,9 +21,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_NAME = "name";
     public static final String COLUMN_DESCRIPTION = "description";
     public static final String COLUMN_COST = "cost";
-    public static final String COLUMN_VERSION = "version";
+    public static final String COLUMN_GROUPE = "groupe";
     public static final String COLUMN_DEVELOPMENT_DATE = "developmentDate";
     public static final String COLUMN_SUBCATEGORY_ID = "subcategoryID";
+    public static final String COLUMN_SECOND_NAME = "secondName";
 
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, SCHEMA);
@@ -56,8 +57,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
                 + COLUMN_NAME + " TEXT NOT NULL,"
                 + COLUMN_DESCRIPTION + " TEXT,"
+                + COLUMN_SECOND_NAME + " TEXT,"
                 + COLUMN_COST + " INTEGER,"
-                + COLUMN_VERSION + " INTEGER,"
+                + COLUMN_GROUPE + " TEXT,"
                 + COLUMN_DEVELOPMENT_DATE + " TEXT,"
                 + COLUMN_SUBCATEGORY_ID + " INTEGER NOT NULL, "
                 + "FOREIGN KEY (" + COLUMN_SUBCATEGORY_ID + ")"
@@ -65,8 +67,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 + "ON UPDATE CASCADE "
                 + "ON DELETE CASCADE);");
 
-        db.execSQL("INSERT INTO " + TABLE + " (" + COLUMN_NAME + ", " + COLUMN_DESCRIPTION + ", " + COLUMN_COST + ", " + COLUMN_VERSION + ", " + COLUMN_DEVELOPMENT_DATE + ", " + COLUMN_SUBCATEGORY_ID
-                + ") VALUES ('Notepad', 'Блокнот', 100, 1, '01-01-2001', 1), ('Nvidia driver', 'Драйвер для видеокарты Nvidia', 200, 2, '01-01-2002', 4);"
+        db.execSQL("INSERT INTO " + TABLE + " (" + COLUMN_NAME + ", " + COLUMN_DESCRIPTION + ", " + COLUMN_SECOND_NAME + ", " + COLUMN_COST + ", " + COLUMN_GROUPE + ", " + COLUMN_DEVELOPMENT_DATE + ", " + COLUMN_SUBCATEGORY_ID
+                + ") VALUES ('Notepad', 'Блокнот','Блокнот', 100, 'MOA', '01-01-2001', 1), ('Nvidia driver','Блокнот', 'Драйвер для видеокарты Nvidia', 200, 'pri', '01-01-2002', 4);"
         );
     }
 
@@ -78,7 +80,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public List<Software> getSoftwareList() {
         SQLiteDatabase db = this.getReadableDatabase();
-        String queryString = "SELECT Software._id, Software.name, Software.description, Software.cost, Software.version, Software.developmentDate, Category.name, Subcategory.name FROM Software, Category, Subcategory WHERE Software.subcategoryID = Subcategory._id AND Subcategory.categoryID = Category._id;";
+        String queryString = "SELECT Software._id, Software.name, Software.description,Software.secondName, Software.cost, Software.version, Software.developmentDate, Category.name, Subcategory.name FROM Software, Category, Subcategory WHERE Software.subcategoryID = Subcategory._id AND Subcategory.categoryID = Category._id;";
         Cursor cursor = db.rawQuery(queryString, null);
         List<Software> softwareList = new ArrayList<>();
 
@@ -87,11 +89,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 softwareList.add(new Software(cursor.getInt(0),
                         cursor.getString(1),
                         cursor.getString(2),
-                        cursor.getInt(3),
+                        cursor.getString(3),
                         cursor.getInt(4),
                         cursor.getString(5),
                         cursor.getString(6),
-                        cursor.getString(7)));
+                        cursor.getString(7),
+                        cursor.getString(8)));
             } while (cursor.moveToNext());
         }
 

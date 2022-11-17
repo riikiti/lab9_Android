@@ -115,9 +115,10 @@ public class MainActivity extends AppCompatActivity {
                 String str = "Выбранный объект:"
                         + "\nID: " + selected.getId()
                         + "\nНазвание: " + selected.getName()
-                        + "\nОписание: " + selected.getDescription()
-                        + "\nСтоимость: " + selected.getCost()
-                        + "\nВерсия: " + selected.getVersion()
+                        + "\nОписание: " + selected.getSurname()
+                        + "\nОтчество: " + selected.getSecondName()
+                        + "\nСтоимость: " + selected.getDate()
+                        + "\nВерсия: " + selected.getGroupe()
                         + "\nДата разработки: " + selected.getDevelopmentDate()
                         + "\nКатегория: " + selected.getCategory()
                         + "\nПодкатегория: " + selected.getSubcategory();

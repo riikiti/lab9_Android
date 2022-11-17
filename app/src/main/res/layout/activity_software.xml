@@ -22,7 +22,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
-                android:text="Добавление/редактирование ПО"
+                android:text="Добавление/редактирование студентов"
                 android:textSize="@dimen/text_size"
                 android:textStyle="bold" />
 
@@ -30,63 +30,75 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:labelFor="@+id/edit_object_name"
-                android:text="Название" />
+                android:text="Имя" />
 
             <EditText
                 android:id="@+id/edit_object_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Название" />
+                android:hint="Имя" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:labelFor="@+id/edit_object_description"
-                android:text="Описание" />
+                android:text="Фамилия" />
 
             <EditText
                 android:id="@+id/edit_object_description"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Описание" />
+                android:hint="Фамилия" />
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:labelFor="@+id/edit_object_subcategory"
+                android:text="Отчество" />
+
+            <EditText
+                android:id="@+id/edit_object_secondName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Отчество" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:labelFor="@+id/edit_object_cost"
-                android:text="Стоимость" />
+                android:text="Курс" />
 
             <EditText
                 android:id="@+id/edit_object_cost"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Стоимость"
+                android:hint="Курс"
                 android:inputType="numberDecimal" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:labelFor="@+id/edit_object_version"
-                android:text="Версия" />
+                android:text="Группа" />
 
             <EditText
                 android:id="@+id/edit_object_version"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Версия"
-                android:inputType="numberDecimal" />
+                android:hint="Группа" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:labelFor="@+id/edit_object_date"
-                android:text="Дата разработки" />
+                android:text="Дата рождения" />
 
             <EditText
                 android:id="@+id/edit_object_date"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Дата разработки"
+                android:hint="Дата рождения"
                 android:inputType="date" />
 
             <TextView

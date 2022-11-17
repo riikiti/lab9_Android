@@ -6,19 +6,21 @@ import java.io.Serializable;
 public class Software implements Serializable {
     private int id;
     private String name;
-    private String description;
-    private int cost;
-    private int version;
+    private String surname;
+    private int course;
+    private String groupe;
     private String developmentDate;
     private String category = "";
     private String subcategory = "";
+    private String secondName;
 
-    public Software(int id, String name, String description, int cost, int version, String developmentDate, String category, String subcategory) {
+    public Software(int id, String name, String description, String secondName, int cost, String groupe, String developmentDate, String category, String subcategory) {
         this.id = id;
         this.name = name;
-        this.description = description;
-        this.cost = cost;
-        this.version = version;
+        this.surname = description;
+        this.secondName = secondName;
+        this.course = cost;
+        this.groupe = groupe;
         this.developmentDate = developmentDate;
         this.category = category;
         this.subcategory = subcategory;
@@ -40,28 +42,28 @@ public class Software implements Serializable {
         this.name = name;
     }
 
-    public String getDescription() {
-        return description;
+    public String getSurname() {
+        return surname;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setSurname(String surname) {
+        this.surname = surname;
     }
 
-    public int getCost() {
-        return cost;
+    public int getDate() {
+        return course;
     }
 
-    public void setCost(int cost) {
-        this.cost = cost;
+    public void setDate(int date) {
+        this.course = date;
     }
 
-    public int getVersion() {
-        return version;
+    public String getGroupe() {
+        return groupe;
     }
 
-    public void setVersion(int version) {
-        this.version = version;
+    public void setGroupe(String groupe) {
+        this.groupe = groupe;
     }
 
     public String getDevelopmentDate() {
@@ -86,5 +88,13 @@ public class Software implements Serializable {
 
     public void setSubcategory(String subcategory) {
         this.subcategory = subcategory;
+    }
+
+    public String getSecondName() {
+        return secondName;
+    }
+
+    public void setSecondName(String secondName) {
+        this.secondName = secondName;
     }
 }

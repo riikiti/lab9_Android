@@ -17,7 +17,7 @@ import com.example.lab9.R;
 public class SoftwareActivity extends AppCompatActivity {
 
     boolean isNewObject;
-    EditText editName, editDescription, editCost, editVersion, editDate, editSubcategory;
+    EditText editName, editDescription, editCost, editVersion, editDate, editSubcategory, editSecondName;
     Software software;
 
     @Override
@@ -37,6 +37,7 @@ public class SoftwareActivity extends AppCompatActivity {
             editVersion = findViewById(R.id.edit_object_version);
             editDate = findViewById(R.id.edit_object_date);
             editSubcategory = findViewById(R.id.edit_object_subcategory);
+            editSecondName = findViewById(R.id.edit_object_secondName);
 
             isNewObject = arguments.getBoolean("isNewObject");
             if (isNewObject) {
@@ -51,11 +52,12 @@ public class SoftwareActivity extends AppCompatActivity {
 
                 software = (Software) arguments.getSerializable(Software.class.getSimpleName());
                 editName.setText(software.getName());
-                editDescription.setText(software.getDescription());
-                editCost.setText(String.format("%s", software.getCost()));
-                editVersion.setText(String.format("%s", software.getVersion()));
+                editDescription.setText(software.getSurname());
+                editCost.setText(String.format("%s", software.getDate()));
+                editVersion.setText(String.format("%s", software.getGroupe()));
                 editDate.setText(software.getDevelopmentDate());
                 editSubcategory.setText(software.getSubcategory());
+                editSecondName.setText(software.getSecondName());
             }
         }
     }
@@ -64,10 +66,12 @@ public class SoftwareActivity extends AppCompatActivity {
 
         String name = editName.getText().toString();
         String description = editDescription.getText().toString();
-        int cost, version;
+        String secondName = editSecondName.getText().toString();
+        String version = editVersion.getText().toString();
+        int cost ;
         try {
             cost = Integer.parseInt(editCost.getText().toString());
-            version = Integer.parseInt(editVersion.getText().toString());
+
         }
         catch (Exception e) {
             Toast.makeText(this, "Проверьте правильность ввода данных!", Toast.LENGTH_SHORT).show();
@@ -98,11 +102,11 @@ public class SoftwareActivity extends AppCompatActivity {
             cursor.moveToFirst();
             int subcategoryID = cursor.getInt(0);
             if (isNewObject) {
-                query = "INSERT INTO Software (name, description, cost, version, developmentDate, subcategoryID) VALUES ('" + name + "', '" + description + "', " + cost + ", " + version + ", '" + date + "', " + subcategoryID + ");";
+                query = "INSERT INTO Software (name, description,secondName, cost, version, developmentDate, subcategoryID) VALUES ('" + name + "', '" + description + "', '" + secondName + "', " + cost + ", " + version + ", '" + date + "', " + subcategoryID + ");";
                 Toast.makeText(this, "Новое ПО добавлено в список!", Toast.LENGTH_SHORT).show();
             }
             else {
-                query = "UPDATE Software SET name = '" + name + "', description = '" + description + "', cost = " + cost + ", version = " + version + ", developmentDate = '" + date + "', subcategoryID = " + subcategoryID + " WHERE _id = " + software.getId() + ";";
+                query = "UPDATE Software SET name = '" + name + "', description = '" + description + "', secondName = '" + secondName + "', cost = " + cost + ", version = " + version + ", developmentDate = '" + date + "', subcategoryID = " + subcategoryID + " WHERE _id = " + software.getId() + ";";
                 Toast.makeText(this, "ПО отредактировано!", Toast.LENGTH_SHORT).show();
             }
             db.execSQL(query);
