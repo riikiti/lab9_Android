@@ -22,7 +22,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
-                android:text="Добавление/редактирование подкатегории"
+                android:text="Добавление/редактирование кафедры"
                 android:textSize="@dimen/text_size"
                 android:textStyle="bold" />
 
@@ -42,13 +42,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:labelFor="@+id/edit_subcategory_category"
-                android:text="Категория" />
+                android:text="Факультет" />
 
             <EditText
                 android:id="@+id/edit_subcategory_category"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Категория" />
+                android:hint="Факультет" />
 
             <Button
                 android:id="@+id/editSubcategory"
