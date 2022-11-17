@@ -34,7 +34,7 @@ public class SoftwareActivity extends AppCompatActivity {
             editName = findViewById(R.id.edit_object_name);
             editDescription = findViewById(R.id.edit_object_description);
             editCost = findViewById(R.id.edit_object_cost);
-            editVersion = findViewById(R.id.edit_object_version);
+            // editVersion = findViewById(R.id.edit_object_version);
             editDate = findViewById(R.id.edit_object_date);
             editSubcategory = findViewById(R.id.edit_object_subcategory);
             editSecondName = findViewById(R.id.edit_object_secondName);
@@ -54,7 +54,7 @@ public class SoftwareActivity extends AppCompatActivity {
                 editName.setText(software.getName());
                 editDescription.setText(software.getSurname());
                 editCost.setText(String.format("%s", software.getDate()));
-                editVersion.setText(String.format("%s", software.getGroupe()));
+                //editVersion.setText(String.format("%s", software.getGroupe()));
                 editDate.setText(software.getDevelopmentDate());
                 editSubcategory.setText(software.getSubcategory());
                 editSecondName.setText(software.getSecondName());
@@ -67,7 +67,7 @@ public class SoftwareActivity extends AppCompatActivity {
         String name = editName.getText().toString();
         String description = editDescription.getText().toString();
         String secondName = editSecondName.getText().toString();
-        String version = editVersion.getText().toString();
+       // String version = editVersion.getText().toString();
         int cost ;
         try {
             cost = Integer.parseInt(editCost.getText().toString());
@@ -102,11 +102,11 @@ public class SoftwareActivity extends AppCompatActivity {
             cursor.moveToFirst();
             int subcategoryID = cursor.getInt(0);
             if (isNewObject) {
-                query = "INSERT INTO Software (name, description,secondName, cost, version, developmentDate, subcategoryID) VALUES ('" + name + "', '" + description + "', '" + secondName + "', " + cost + ", " + version + ", '" + date + "', " + subcategoryID + ");";
+                query = "INSERT INTO Software (name, description,secondName, cost,  developmentDate, subcategoryID) VALUES ('" + name + "', '" + description + "', '" + secondName + "', " + cost + ", '" + date + "', " + subcategoryID + ");";
                 Toast.makeText(this, "Новое ПО добавлено в список!", Toast.LENGTH_SHORT).show();
             }
             else {
-                query = "UPDATE Software SET name = '" + name + "', description = '" + description + "', secondName = '" + secondName + "', cost = " + cost + ", version = " + version + ", developmentDate = '" + date + "', subcategoryID = " + subcategoryID + " WHERE _id = " + software.getId() + ";";
+                query = "UPDATE Software SET name = '" + name + "', description = '" + description + "', secondName = '" + secondName + "', cost = " + cost + ", developmentDate = '" + date + "', subcategoryID = " + subcategoryID + " WHERE _id = " + software.getId() + ";";
                 Toast.makeText(this, "ПО отредактировано!", Toast.LENGTH_SHORT).show();
             }
             db.execSQL(query);

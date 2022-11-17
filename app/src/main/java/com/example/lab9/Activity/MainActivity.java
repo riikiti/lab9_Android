@@ -114,14 +114,13 @@ public class MainActivity extends AppCompatActivity {
                     currentItem.setVisibility(View.VISIBLE);
                 String str = "Выбранный объект:"
                         + "\nID: " + selected.getId()
-                        + "\nНазвание: " + selected.getName()
-                        + "\nОписание: " + selected.getSurname()
+                        + "\nИмя: " + selected.getName()
+                        + "\nФамилия: " + selected.getSurname()
                         + "\nОтчество: " + selected.getSecondName()
-                        + "\nСтоимость: " + selected.getDate()
-                        + "\nВерсия: " + selected.getGroupe()
-                        + "\nДата разработки: " + selected.getDevelopmentDate()
-                        + "\nКатегория: " + selected.getCategory()
-                        + "\nПодкатегория: " + selected.getSubcategory();
+                        + "\nКурс: " + selected.getDate()
+                        + "\nДата рождения: " + selected.getDevelopmentDate()
+                        + "\nФакультет: " + selected.getCategory()
+                        + "\nГруппа: " + selected.getSubcategory();
                 currentItem.setText(str);
                 currentItemId = selected.getId();
             }

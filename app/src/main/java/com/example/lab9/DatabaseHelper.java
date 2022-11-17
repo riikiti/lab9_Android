@@ -21,7 +21,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_NAME = "name";
     public static final String COLUMN_DESCRIPTION = "description";
     public static final String COLUMN_COST = "cost";
-    public static final String COLUMN_GROUPE = "groupe";
     public static final String COLUMN_DEVELOPMENT_DATE = "developmentDate";
     public static final String COLUMN_SUBCATEGORY_ID = "subcategoryID";
     public static final String COLUMN_SECOND_NAME = "secondName";
@@ -38,7 +37,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 + "_id INTEGER PRIMARY KEY AUTOINCREMENT,"
                 + "name TEXT NOT NULL UNIQUE);");
 
-        db.execSQL("INSERT INTO Category (_id, name) VALUES (1, 'Прикладное ПО'), (2, 'Системное ПО');");
+        db.execSQL("INSERT INTO Category (_id, name) VALUES (1, 'ФИТ'), (2, 'УНИ');");
 
         // Subcategory table
         db.execSQL("CREATE TABLE IF NOT EXISTS Subcategory ("
@@ -50,7 +49,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 + "ON UPDATE CASCADE "
                 + "ON DELETE CASCADE);");
 
-        db.execSQL("INSERT INTO Subcategory (name, categoryID) VALUES ('Редактор', 1), ('Браузер', 1), ('Архиватор', 1), ('Драйвер', 2), ('ОС', 2), ('Антивирус', 2);");
+        db.execSQL("INSERT INTO Subcategory (name, categoryID) VALUES ('Моа', 1), ('При', 1), ('ИВТ', 1), ('ПМ', 2), ('ТТП', 2), ('ЭМ', 2);");
 
         // Software table
         db.execSQL("CREATE TABLE IF NOT EXISTS Software ("
@@ -59,7 +58,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 + COLUMN_DESCRIPTION + " TEXT,"
                 + COLUMN_SECOND_NAME + " TEXT,"
                 + COLUMN_COST + " INTEGER,"
-                + COLUMN_GROUPE + " TEXT,"
                 + COLUMN_DEVELOPMENT_DATE + " TEXT,"
                 + COLUMN_SUBCATEGORY_ID + " INTEGER NOT NULL, "
                 + "FOREIGN KEY (" + COLUMN_SUBCATEGORY_ID + ")"
@@ -67,8 +65,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 + "ON UPDATE CASCADE "
                 + "ON DELETE CASCADE);");
 
-        db.execSQL("INSERT INTO " + TABLE + " (" + COLUMN_NAME + ", " + COLUMN_DESCRIPTION + ", " + COLUMN_SECOND_NAME + ", " + COLUMN_COST + ", " + COLUMN_GROUPE + ", " + COLUMN_DEVELOPMENT_DATE + ", " + COLUMN_SUBCATEGORY_ID
-                + ") VALUES ('Notepad', 'Блокнот','Блокнот', 100, 'MOA', '01-01-2001', 1), ('Nvidia driver','Блокнот', 'Драйвер для видеокарты Nvidia', 200, 'pri', '01-01-2002', 4);"
+        db.execSQL("INSERT INTO " + TABLE + " (" + COLUMN_NAME + ", " + COLUMN_DESCRIPTION + ", " + COLUMN_SECOND_NAME + ", " + COLUMN_COST + ", " + COLUMN_DEVELOPMENT_DATE + ", " + COLUMN_SUBCATEGORY_ID
+                + ") VALUES ('Руслан', 'Курский','Игоревич', 1,  '06-06-2001', 1), ('Алим','Алим', 'Алим', 2,  '21-04-2002', 4);"
         );
     }
 
@@ -80,7 +78,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public List<Software> getSoftwareList() {
         SQLiteDatabase db = this.getReadableDatabase();
-        String queryString = "SELECT Software._id, Software.name, Software.description,Software.secondName, Software.cost, Software.version, Software.developmentDate, Category.name, Subcategory.name FROM Software, Category, Subcategory WHERE Software.subcategoryID = Subcategory._id AND Subcategory.categoryID = Category._id;";
+        String queryString = "SELECT Software._id, Software.name, Software.description,Software.secondName, Software.cost, Software.developmentDate, Category.name, Subcategory.name FROM Software, Category, Subcategory WHERE Software.subcategoryID = Subcategory._id AND Subcategory.categoryID = Category._id;";
         Cursor cursor = db.rawQuery(queryString, null);
         List<Software> softwareList = new ArrayList<>();
 
@@ -93,8 +91,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                         cursor.getInt(4),
                         cursor.getString(5),
                         cursor.getString(6),
-                        cursor.getString(7),
-                        cursor.getString(8)));
+                        cursor.getString(7)));
             } while (cursor.moveToNext());
         }
 

@@ -8,19 +8,19 @@ public class Software implements Serializable {
     private String name;
     private String surname;
     private int course;
-    private String groupe;
+
     private String developmentDate;
     private String category = "";
     private String subcategory = "";
     private String secondName;
 
-    public Software(int id, String name, String description, String secondName, int cost, String groupe, String developmentDate, String category, String subcategory) {
+    public Software(int id, String name, String description, String secondName, int cost, String developmentDate, String category, String subcategory) {
         this.id = id;
         this.name = name;
         this.surname = description;
         this.secondName = secondName;
         this.course = cost;
-        this.groupe = groupe;
+
         this.developmentDate = developmentDate;
         this.category = category;
         this.subcategory = subcategory;
@@ -58,13 +58,6 @@ public class Software implements Serializable {
         this.course = date;
     }
 
-    public String getGroupe() {
-        return groupe;
-    }
-
-    public void setGroupe(String groupe) {
-        this.groupe = groupe;
-    }
 
     public String getDevelopmentDate() {
         return developmentDate;

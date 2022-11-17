@@ -66,31 +66,6 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:labelFor="@+id/edit_object_cost"
-                android:text="Курс" />
-
-            <EditText
-                android:id="@+id/edit_object_cost"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Курс"
-                android:inputType="numberDecimal" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:labelFor="@+id/edit_object_version"
-                android:text="Группа" />
-
-            <EditText
-                android:id="@+id/edit_object_version"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Группа" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
                 android:labelFor="@+id/edit_object_date"
                 android:text="Дата рождения" />
 
@@ -104,8 +79,21 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:labelFor="@+id/edit_object_cost"
+                android:text="Курс" />
+
+            <EditText
+                android:id="@+id/edit_object_cost"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Курс"
+                android:inputType="numberDecimal" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:labelFor="@+id/edit_object_subcategory"
-                android:text="Подкатегория" />
+                android:text="Группа" />
 
             <EditText
                 android:id="@+id/edit_object_subcategory"
